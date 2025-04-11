@@ -68,13 +68,18 @@ function cargar(resultado){
 }
 
 function listar(){
-  const user = getProductsFromStorage();
+  const users = getProductsFromStorage();
   const userlist = document.getElementById('userlist');
   userlist.innerHTML = '';
 
-  user.forEach((p) => {
+  users.forEach((p, i) => {
     const li = document.createElement('li');
-    li.textContent = `Nombre: ${p.nombre}, Apellidos: ${p.apellidos}, Correo: ${p.email}`;
+    li.innerHTML = `
+      <strong>Usuario ${i + 1}</strong><br>
+      Nombre: ${p.nombre}<br>
+      Apellidos: ${p.apellidos}<br>
+      Correo: ${p.email}<br><br>
+    `;
     userlist.appendChild(li);
   });
     /*event.preventDefault();
