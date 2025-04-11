@@ -67,7 +67,16 @@ function cargar(resultado){
 }
 
 function listar(){
-    event.preventDefault();
+  const user = getProductsFromStorage();
+  const userlist = document.getElementById('userlist');
+  userlist.innerHTML = '';
+
+  user.forEach((p) => {
+    const li = document.createElement('li');
+    li.textContent = `Nombre: ${p.nombre}, Apellidos: ${p.apellidos}, Correo: ${p.email}`;
+    userlist.appendChild(li);
+  });
+    /*event.preventDefault();
     const requestOptions = {
       method: "GET",
       redirect: "follow"
@@ -79,4 +88,5 @@ function listar(){
         cargar(result))
       .catch((error) =>
         console.error(error));
+    */
 }
