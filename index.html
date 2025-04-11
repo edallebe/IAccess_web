@@ -12,7 +12,7 @@
         <form id="registro">
             <div>
                 <label for="nombre">Nombres: </label>
-                <input type="text" id="nombre" placeholder="" value="000000">
+                <input type="text" id="nombre" placeholder="" value="">
                 <br>
 
                 <label for="apellidos">Apellidos: </label>
@@ -37,7 +37,7 @@
 
                 <br>
                 <br>
-                <input type="submit" onclick="guardar()" value="Registrar">
+                <input type="submit" onclick="guardar(event)" value="Registrar">
             </div>
         </form>
     </div>
@@ -63,6 +63,10 @@
                 <label for="email">Correo institucional</label>
                 <input type="text" id="emailU" placeholder="">
                 <br>
+                
+                <label for="tipo">Tipo usuario</label>
+                <input type="text" id="tipoU" placeholder="">
+                <br>
 
                 <label for="contrasena">Contraseña: </label>
                 <input type="password" id="contrasenaU" placeholder="">
@@ -74,31 +78,8 @@
 
                 <br>
                 <br>
-                <input type="submit" onclick="actualizar()" value="actualizar">
+                <input type="button" onclick="actualizar()" value="actualizar">
             </div>
         </form>
-    </div>
-    <h1>Eliminar usuario</h1>
-    <div>
-        <form id="EliminarUsuario">
-            <div>
-                <label for="nombre">Nombres: </label>
-                <input type="text" id="nombreD" placeholder="" value="000000">
-                <br>
-
-                <label for="apellidos">Apellidos: </label>
-                <input type="text" id="apellidosD" placeholder="">
-                <br>
-                
-                <label for="email">Correo institucional</label>
-                <input type="text" id="emailD" placeholder="">
-                <br>
-
-                <br>
-                <br>
-                <input type="submit" onclick="eliminar()" value="Eliminar">
-            </div>
-        </form>
-    </div>
 </body>
 </html>
