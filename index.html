@@ -24,7 +24,7 @@
                 <br>
 
                 <label for="tipo">Tipo usuario</label>
-                <input type="checkbox" id="tipo" placeholder="">
+                <input type="text" id="tipo" placeholder="">
                 <br>
 
                 <label for="contrasena">Contraseña: </label>
@@ -53,28 +53,28 @@
         <form id="ModificarUsuario">
             <div>
                 <label for="nombre">Nombres: </label>
-                <input type="text" id="nombre" placeholder="" value="000000">
+                <input type="text" id="nombreU" placeholder="" value="000000">
                 <br>
 
                 <label for="apellidos">Apellidos: </label>
-                <input type="text" id="apellidos" placeholder="">
+                <input type="text" id="apellidosU" placeholder="">
                 <br>
                 
                 <label for="email">Correo institucional</label>
-                <input type="text" id="email" placeholder="">
+                <input type="text" id="emailU" placeholder="">
                 <br>
 
                 <label for="contrasena">Contraseña: </label>
-                <input type="password" id="contrasena" placeholder="">
+                <input type="password" id="contrasenaU" placeholder="">
                 <br>
                 
                 <label for="contrasenaC">Confirmación de Contraseña: </label>
-                <input type="password" id="contrasenaC" placeholder="">
+                <input type="password" id="contrasenaCU" placeholder="">
                 <br>
 
                 <br>
                 <br>
-                <input type="submit" onclick="guardar()" value="Modificar">
+                <input type="submit" onclick="actualizar()" value="actualizar">
             </div>
         </form>
     </div>
@@ -83,20 +83,20 @@
         <form id="EliminarUsuario">
             <div>
                 <label for="nombre">Nombres: </label>
-                <input type="text" id="nombre" placeholder="" value="000000">
+                <input type="text" id="nombreD" placeholder="" value="000000">
                 <br>
 
                 <label for="apellidos">Apellidos: </label>
-                <input type="text" id="apellidos" placeholder="">
+                <input type="text" id="apellidosD" placeholder="">
                 <br>
                 
                 <label for="email">Correo institucional</label>
-                <input type="text" id="email" placeholder="">
+                <input type="text" id="emailD" placeholder="">
                 <br>
 
                 <br>
                 <br>
-                <input type="submit" onclick="guardar()" value="Eliminar">
+                <input type="submit" onclick="eliminar()" value="Eliminar">
             </div>
         </form>
     </div>

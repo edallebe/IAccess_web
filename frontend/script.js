@@ -1,14 +1,16 @@
-function guardar(){
+//base de datos en local
+const getProductsFromStorage = () => JSON.parse(localStorage.getItem('users')) || [];
+const saveProductsToStorage = (users) => localStorage.setItem('users', JSON.stringify(users));
 
-    let nota=0.0;
-    let apellidos='';
-    let datoingresado = document.getElementById("correo").value;
+function guardar(event){
+
+    let datoingresado = document.getElementById("email").value;
 
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     event.preventDefault();
 
-    //variable estructurada transformando el frontend 
+    /*variable estructurada transformando el frontend 
     let raw = JSON.stringify({
       "nombre": document.getElementById("nombre").value,
       "apellidos": document.getElementById("apellidos").value,
@@ -17,7 +19,22 @@ function guardar(){
       "contrasenaC": document.getElementById("contrasenaC").value
       
     });
+    */
+    let newUser ={
+      "nombre": document.getElementById("nombre").value,
+      "apellidos": document.getElementById("apellidos").value,
+      "email": document.getElementById("email").value,
+      "contrasena": document.getElementById("contrasena").value,
+      "contrasenaC": document.getElementById("contrasenaC").value
+    }
 
+    let user =getProductsFromStorage();
+    user.push({newUser})
+    saveProductsToStorage(user)
+
+    alert('Producto agregado');
+
+    /*
     let requestOptions = {
       method: "POST",
       headers: myHeaders,
@@ -29,6 +46,7 @@ function guardar(){
       .then((response) => response.text())
       .then((result) => console.log(result))
       .catch((error) => console.error(error));
+    */
 }
 
 //Ejemplo cuando se devuelve algo
