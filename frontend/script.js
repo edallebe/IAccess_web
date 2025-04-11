@@ -29,7 +29,7 @@ function guardar(event){
     }
 
     let user =getProductsFromStorage();
-    user.push({newUser})
+    user.push(newUser)
     saveProductsToStorage(user)
 
     alert('Producto agregado');
