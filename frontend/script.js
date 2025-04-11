@@ -1,6 +1,6 @@
 //base de datos en local
-const getProductsFromStorage = () => JSON.parse(localStorage.getItem('users')) || [];
-const saveProductsToStorage = (users) => localStorage.setItem('users', JSON.stringify(users));
+const getUsersFromStorage = () => JSON.parse(localStorage.getItem('users')) || [];
+const saveUsersToStorage = (users) => localStorage.setItem('users', JSON.stringify(users));
 
 function guardar(event){
 
@@ -24,16 +24,17 @@ function guardar(event){
       "nombre": document.getElementById("nombre").value,
       "apellidos": document.getElementById("apellidos").value,
       "email": document.getElementById("email").value,
+      "tipo": document.getElementById("tipo").value,
       "contrasena": document.getElementById("contrasena").value,
       "contrasenaC": document.getElementById("contrasenaC").value
     }
 
-    let user =getProductsFromStorage();
+    let user =getUsersFromStorage();
     user.push(newUser)
-    saveProductsToStorage(user)
+    saveUsersToStorage(user)
 
     alert('Registrado');
-    listar();
+    //listar();
 
     /*
     let requestOptions = {
@@ -68,7 +69,8 @@ function cargar(resultado){
 }
 
 function listar(){
-  const users = getProductsFromStorage();
+  event.preventDefault();
+  const users = getUsersFromStorage();
   const userlist = document.getElementById('userlist');
   userlist.innerHTML = '';
 
@@ -78,7 +80,11 @@ function listar(){
       <strong>Usuario ${i + 1}</strong><br>
       Nombre: ${p.nombre}<br>
       Apellidos: ${p.apellidos}<br>
-      Correo: ${p.email}<br><br>
+      Correo: ${p.email}<br>
+      Tipo usuario: ${p.tipo}<br>
+      <button type="button" onclick="editarUsuario(${i})">Editar</button>
+      <button type="button" onclick="eliminarUsuario(${i})">Eliminar</button
+      <br><br>
     `;
     userlist.appendChild(li);
   });
@@ -96,3 +102,64 @@ function listar(){
         console.error(error));
     */
 }
+
+function editarUsuario(index) {
+  const users = getUsersFromStorage();
+  const user = users[index];
+
+  // Guardar el índice temporalmente para actualizar después
+  localStorage.setItem('editIndex', index);
+
+  // Llenar los campos del formulario de modificación
+  document.getElementById("nombreU").value = user.nombre;
+  document.getElementById("apellidosU").value = user.apellidos;
+  document.getElementById("emailU").value = user.email;
+  document.getElementById("tipoU").value = user.tipo;
+  document.getElementById("contrasenaU").value = user.contrasena;
+  document.getElementById("contrasenaCU").value = user.contrasenaC;
+}
+
+function actualizar() {
+  const index = localStorage.getItem('editIndex');
+  if (index === null) {
+    alert("Selecciona un usuario para modificar.");
+    return;
+  }
+
+  let users = getUsersFromStorage();
+
+  users[index] = {
+    nombre: document.getElementById("nombreU").value,
+    apellidos: document.getElementById("apellidosU").value,
+    email: document.getElementById("emailU").value,
+    tipo: document.getElementById("tipoU").value,
+    contrasena: document.getElementById("contrasenaU").value,
+    contrasenaC: document.getElementById("contrasenaCU").value
+  };
+
+  saveUsersToStorage(users);
+  localStorage.removeItem('editIndex');
+  listar();
+  alert("Usuario actualizado correctamente");
+  limpiarFormularioModificar();
+}
+
+function eliminarUsuario(index) {
+  if (confirm("¿Estás seguro de que deseas eliminar este usuario?")) {
+    let users = getUsersFromStorage();
+    users.splice(index, 1); // Elimina el usuario en la posición 'index'
+    saveUsersToStorage(users); // Guarda la nueva lista sin ese usuario
+    listar(); // Actualiza la lista visual
+    alert("Usuario eliminado con éxito.");
+  }
+}
+
+function limpiarFormularioModificar() {
+  document.getElementById("nombreU").value = "";
+  document.getElementById("apellidosU").value = "";
+  document.getElementById("emailU").value = "";
+  document.getElementById("tipoU").value = "";
+  document.getElementById("contrasenaU").value = "";
+  document.getElementById("contrasenaCU").value = "";
+}
+
