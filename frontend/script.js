@@ -32,7 +32,8 @@ function guardar(event){
     user.push(newUser)
     saveProductsToStorage(user)
 
-    alert('Producto agregado');
+    alert('Registrado');
+    listar();
 
     /*
     let requestOptions = {
